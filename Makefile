@@ -6,3 +6,7 @@ run:
 
 test:
 	pytest .
+
+clean:
+	rm -r -f __pycache__
+	rm -r -f .pytest_cache
