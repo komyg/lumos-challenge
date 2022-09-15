@@ -5,5 +5,5 @@ test:
 	pytest ./app
 
 clean:
-	rm -r -f __pycache__
+	find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
 	rm -r -f .pytest_cache
