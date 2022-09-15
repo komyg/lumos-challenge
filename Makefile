@@ -1,6 +1,5 @@
 run:
-	export FLASK_ENV=development
-	flask --debug --app ./app/app.py run --port=5000
+	python app/app.py
 
 test:
 	pytest ./app

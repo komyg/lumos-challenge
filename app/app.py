@@ -1,9 +1,13 @@
 from flask import Flask
+from dotenv import load_dotenv
 
-from .okta.presentation import okta_routes
+from okta.presentation import okta_routes
+from common.infrastructure.environment_config import PORT, DEBUG
+
+load_dotenv()
 
 app = Flask(__name__)
 
 app.register_blueprint(okta_routes.okta_blueprint)
-# API Token: 00potLTIJTN1QVYbL1MrglF3mIq-aHUUylVcwrTWrl
-# Okta URL: https://dev-20578441
+
+app.run(port=PORT, debug=DEBUG)
