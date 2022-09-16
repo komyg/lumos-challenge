@@ -10,7 +10,7 @@ def client():
 
 
 def test_list_users(client):
-    resp = client.get("/okta/list_users")
+    resp = client.get("/okta/users")
 
     assert resp.status_code == 200
 
