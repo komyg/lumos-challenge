@@ -1,5 +1,5 @@
 from returns.pipeline import flow
-from returns.result import Result, Success, Failure
+from returns.result import Result, Success
 from returns.pointfree import bind, alt
 
 from app.okta.infrastructure.okta_client import client
