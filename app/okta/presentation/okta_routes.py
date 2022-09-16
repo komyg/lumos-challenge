@@ -11,3 +11,4 @@ okta_blueprint.route("/users/<user_id>/suspend", methods=["POST"])(
 okta_blueprint.route("/users/<user_id>/unsuspend", methods=["POST"])(
     controller.unsuspend_user
 )
+okta_blueprint.route("/users/<user_id>", methods=["DELETE"])(controller.delete_user)

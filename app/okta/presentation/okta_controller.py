@@ -4,6 +4,7 @@ from returns.result import Result
 
 from app.okta.application.list_users_use_case import list_users as list_users_use_case
 from app.okta.application import user_suspention_use_case as user_suspention
+from app.okta.application import user_deletion_use_case as user_deletion
 
 
 def list_users():
@@ -19,6 +20,11 @@ def suspend_user(user_id):
 
 def unsuspend_user(user_id):
     result = user_suspention.unsuspend_user(user_id)
+    return _process_response(result)
+
+
+def delete_user(user_id):
+    result = user_deletion.delete_user(user_id)
     return _process_response(result)
 
 
