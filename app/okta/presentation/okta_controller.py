@@ -1,4 +1,5 @@
 from flask import request
+from returns.pipeline import is_successful
 
 from app.okta.application.list_users_use_case import list_users as list_users_use_case
 from app.okta.application import user_suspention_use_case as user_suspention
@@ -6,7 +7,12 @@ from app.okta.application import user_suspention_use_case as user_suspention
 
 def list_users():
     query_params = request.args
-    return list_users_use_case(query_params)
+    result = list_users_use_case(query_params)
+
+    if not is_successful(result):
+        return result.failure(), 400
+
+    return result.unwrap()
 
 
 def suspend_user(user_id):

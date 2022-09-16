@@ -11,3 +11,7 @@ def get_base_headers():
 
 def get_base_url():
     return OKTA_URL
+
+
+def parse_error(okta_error: dict[str, any]) -> str:
+    return okta_error.get("errorSummary", "Unknown error")

@@ -1,7 +1,20 @@
+from returns.pipeline import flow
+from returns.result import Result, Success, Failure
+from returns.pointfree import bind, alt
+
 from app.okta.infrastructure.okta_client import client
 from app.okta.domain.user import create_user
+from app.okta.domain.error import create_error
 
 
-def list_users(query_params=None) -> dict[str, any]:
-    okta_user_list = client.list_users(query_params)
-    return list(map(lambda okta_user: create_user(okta_user), okta_user_list))
+def list_users(query_params=None) -> Result[dict[str, any], dict[str, str]]:
+    return flow(
+        query_params,
+        client.list_users,
+        bind(_create_domain_users),
+        alt(create_error),
+    )
+
+
+def _create_domain_users(okta_user_list):
+    return Success(list(map(lambda okta_user: create_user(okta_user), okta_user_list)))
