@@ -4,7 +4,7 @@ from returns.pointfree import bind, alt
 
 from app.okta.infrastructure.okta_client import client
 from app.okta.domain.user import create_user
-from app.okta.domain.error import create_error
+from app.common.domain.error import create_error_dict
 
 
 def list_users(query_params=None) -> Result[dict[str, any], dict[str, str]]:
@@ -12,7 +12,7 @@ def list_users(query_params=None) -> Result[dict[str, any], dict[str, str]]:
         query_params,
         client.list_users,
         bind(_create_domain_users),
-        alt(create_error),
+        alt(create_error_dict),
     )
 
 

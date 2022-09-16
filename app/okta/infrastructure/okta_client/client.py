@@ -17,18 +17,30 @@ def suspend_user(user_id: str):
     url = f"{get_base_url()}/api/v1/users/{user_id}/lifecycle/suspend"
     resp = requests.post(url=url, headers=get_base_headers())
 
-    return Success() if resp.status_code < 400 else Failure(parse_error(resp.json()))
+    return (
+        Success(user_id)
+        if resp.status_code < 400
+        else Failure(parse_error(resp.json()))
+    )
 
 
 def unsuspend_user(user_id: str):
     url = f"{get_base_url()}/api/v1/users/{user_id}/lifecycle/unsuspend"
     resp = requests.post(url=url, headers=get_base_headers())
 
-    return Success() if resp.status_code < 400 else Failure(parse_error(resp.json()))
+    return (
+        Success(user_id)
+        if resp.status_code < 400
+        else Failure(parse_error(resp.json()))
+    )
 
 
 def delete_user(user_id: str):
     url = f"{get_base_url()}/api/v1/users/{user_id}"
     resp = requests.delete(url=url, headers=get_base_headers())
 
-    return Success() if resp.status_code < 400 else Failure(parse_error(resp.json()))
+    return (
+        Success(user_id)
+        if resp.status_code < 400
+        else Failure(parse_error(resp.json()))
+    )
