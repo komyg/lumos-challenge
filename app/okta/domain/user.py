@@ -1,4 +1,5 @@
 USER_FIELDS = {
+    "id",
     "status",
     "created",
     "activated",
