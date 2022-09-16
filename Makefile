@@ -1,5 +1,5 @@
 run:
-	python app/app.py
+	flask --debug --app app run --port=5000
 
 test:
 	pytest ./app
